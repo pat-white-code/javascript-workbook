@@ -1,0 +1,139 @@
+Once you understand the game, whiteboard the logic.
+
+1. Create a list of steps your app need to do.
+
+function movePiece needs to move the last item from the seleted array to the new selected array.
+
+function isLegal() needs to check to make sure the new number being added to the end of the array is less than the last item of the selected array and prevent illegal moves.
+
+function check for win needs to check if all of the items are on stacks.c
+
+function towersOfHanoi needs to take in the user input and call the neccessary functions to play the game
+
+2. Translate to psuedo code.
+
+movePiece --
+
+//remove the last item of startStack and attach it to the end of endStack
+
+isLegal --
+
+// if last item of startstack is greater than endstack, return false
+
+checkForWin --
+
+//if stacks.c length is equal to 4, player wins
+
+towersOfHanoi --
+if isLegal returns false, block the move;
+else,
+movePiece();
+checkForWin();
+
+
+3. Translate to javascript on paper
+
+
+function movePiece(startStack, endStack) {
+
+  const romovedPiece = startStack.pop();
+  endStack.push(piece);
+};
+
+function isLegal() {
+
+  if (startPiece > endPiece) {
+    return false;
+  } else { return true };
+
+}
+
+function checkForWin {
+  if (stacks.c.length === 4) {
+    console.log('WINNER!')
+  }
+}
+
+function towersOfHanoi(startStack, endStack){
+  const startStack = stacks[startStack];
+  const endStack = stacks[endStack];
+  startPiece = startStack[startStack.length - 1];
+  endPiece = endStack[endStack.length - 1];
+
+  if (!isLegal()) {
+    console.log('Error: illegal move');
+    return;
+    }
+
+    movePiece();
+    checkForWin();
+}
+
+4. Write 3 tests for the app.
+
+describe('towersOfHanoi', ()=>{
+  describe('movePiece', ()=> {
+    it('should remove piece from startStack and add it to endStack', ()=> {
+      //setup
+      const startStack = stacks.a;
+      const endStack = stacks.b;
+      const expecetedStart = [4, 3, 2];
+      const expectedEnd = [1];
+
+      //exercize
+      movePiece(startStack, endStack);
+
+      //verify
+      assert.deepEqual(startStack, expectedStart);
+      assert.deepEqual(endStack, expectedEnd);
+    })
+  });
+  
+  describe('isLegal', ()=> {
+    it('should return false if startPiece is greater than endPiece', ()=> {
+      //setup
+      const startPiece = 4;
+      const endPiece = 3;
+      const expected = false;
+
+      const result = isLegal(startPiece, endPiece);
+
+      assert.equal(result, expected);
+    });
+    it('should return true if startPiece is less than endPiece, ()=> {
+      //setup
+      const startPiece = 3
+      const endPiece = 4;
+      const expeceted = true;
+
+      const result = isLegal(startPiece, endPiece);
+      
+      assert.equal(result, expected);
+    }');
+  });
+  describe('checkForWin', ()=>{
+    it('should detect a winner', ()=> {
+      stacks.c = [4,3,2,1];
+
+    const expectedMessage = 'WINNER!'
+
+    checkForWin();
+
+    assert.ok(console, expectedMessage);
+    });
+    it('should not false positive for winner', ()=> {
+      stacks.c = [4,3,2];
+
+    const expectedMessage = null;
+
+    checkForWin();
+    })
+  })
+});
+
+5. Build Towers of Hanoi, so it passes all the tests.
+
+6. Create a new branch called checkpoint1.
+
+Build toward the tests.
+Use the starter code below:
