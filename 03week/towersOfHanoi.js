@@ -41,10 +41,17 @@ function isLegal(startStack, endStack) {
 
 function checkForWin() {
   // Your code here
-  const gamePieces = stacks['a'].length;
-  if(stacks['b'].length === gamePieces || stacks['c'].length === gamePieces) {
-    return true;
-  } else return false;
+  const objectArray = Object.entries(stacks);
+  let gamePieces = 0;
+  for (let i = 0 ; i < objectArray.length ; i ++) {
+    gamePieces = gamePieces + objectArray[i][1].length;
+  }
+  for (let i = 1 ; i < objectArray.length ; i++) {
+    if(objectArray[i][1].length === gamePieces) {
+      return true;
+    }
+  };
+  return false;
 }
 
 function towersOfHanoi(startStack, endStack) {
