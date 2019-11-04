@@ -30,25 +30,34 @@ function movePiece(startStack, endStack) {
 
 function isLegal(startStack, endStack) {
   // Your code here
-  const stack1 = stacks[startStack];
-  const stack2 = stacks[endStack];
-  const last1 = stack1.length-1;
-  const last2 = stack2.length - 1;
-  startPiece = stack1[last1];
-  endPiece = stack2[last2];
-  if (startPiece > endPiece) {
-    return false;
-  } else { return true };
+  if(!stacks[endStack][0]) {
+    return true;
+  }
+  const index1 = stacks[startStack].length - 1;
+  const index2 = stacks[endStack].length - 1;
+
+  return (stacks[startStack][index1] < stacks[endStack][index2])
 }
 
 function checkForWin() {
   // Your code here
-
+  const gamePieces = stacks['a'].length;
+  if(stacks['b'].length === gamePieces || stacks['c'].length === gamePieces) {
+    return true;
+  } else return false;
 }
 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
+  if(!isLegal(startStack, endStack)) {
+    console.log('Not Allowed');
+    return;
+  }
   movePiece(startStack, endStack);
+  if(checkForWin()) {
+    console.log('WINNER!');
+  };
+
 }
 
 function getPrompt() {
