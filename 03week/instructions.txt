@@ -1,3 +1,8 @@
+CODEPLAN:
+
+//
+
+
 Once you understand the game, whiteboard the logic.
 
 1. Create a list of steps your app need to do.
