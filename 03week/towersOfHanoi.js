@@ -55,6 +55,10 @@ function checkForWin() {
 }
 
 function towersOfHanoi(startStack, endStack) {
+  if(!isValid([startStack.toString(), endStack.toString()])){
+    console.log('Not Valid Input');
+    return;
+  }
   // Your code here
   if(!isLegal(startStack, endStack)) {
     console.log('Not Allowed');
@@ -64,7 +68,12 @@ function towersOfHanoi(startStack, endStack) {
   if(checkForWin()) {
     console.log('WINNER!');
   };
+}
 
+const isValid = (inputArr) => {
+  const allStrings = inputArr.map(input => input.toString())
+  let validRegex = /[a-d]/;
+  return allStrings.every(input => input.match(validRegex));
 }
 
 function getPrompt() {
@@ -87,7 +96,14 @@ if (typeof describe === 'function') {
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
   });
-
+  describe('isValid() *new function*', ()=>{
+    it('should stop invalid input', ()=>{
+      assert.equal(isValid([1, 2]), false);
+    });//new test #2
+    it('should not block valid input', ()=>{
+      assert.equal(isValid(['a', 'b']), true);
+    })
+  })
   describe('#isLegal()', () => {
     it('should not allow an illegal move', () => {
       stacks = {
