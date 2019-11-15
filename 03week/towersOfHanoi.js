@@ -13,7 +13,10 @@ let stacks = {
   c: []
 };
 
+let turns = 0;
+
 function printStacks() {
+  console.log("Turn: " + turns);
   console.log("a: " + stacks.a);
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
@@ -25,7 +28,6 @@ function movePiece(startStack, endStack) {
   const dropStack = stacks[endStack];
   const removedPiece = moveStack.pop();
   dropStack.push(removedPiece);
-
 }
 
 function isLegal(startStack, endStack) {
@@ -55,6 +57,7 @@ function checkForWin() {
 }
 
 function towersOfHanoi(startStack, endStack) {
+
   if(!isValid([startStack.toString(), endStack.toString()])){
     console.log('Not Valid Input');
     return;
@@ -65,6 +68,7 @@ function towersOfHanoi(startStack, endStack) {
     return;
   }
   movePiece(startStack, endStack);
+  turns++;
   if(checkForWin()) {
     console.log('WINNER!');
   };
@@ -96,7 +100,20 @@ if (typeof describe === 'function') {
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
   });
-  describe('isValid() *new function*', ()=>{
+  describe('turns *new function* new test', ()=>{
+    //new test
+    it('should keep track of turns', ()=>{
+      stacks = {
+        a: [4, 3, 2, 1],
+        b: [],
+        c: []
+      };
+      turns = 0;
+      towersOfHanoi('a', 'b');
+      assert.equal(turns, 1);
+    });
+  });
+  describe('isValid() *new function* new tests(2)', ()=>{
     it('should stop invalid input', ()=>{
       assert.equal(isValid([1, 2]), false);
     });//new test #2
