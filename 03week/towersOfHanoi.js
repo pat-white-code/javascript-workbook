@@ -23,22 +23,22 @@ function printStacks() {
 }
 
 function movePiece(startStack, endStack) {
+  //removes and stores piece being moved
+  const removedPiece = stacks[startStack].pop();
 
-  const moveStack = stacks[startStack];
-  const dropStack = stacks[endStack];
-  const removedPiece = moveStack.pop();
-  dropStack.push(removedPiece);
+  //adds piece being moved to new stack
+  stacks[endStack].push(removedPiece);
 }
 
+const lastPiece = (arr) =>  arr.find((item, index, arr) => {index === arr.length - 1})
+
 function isLegal(startStack, endStack) {
-  // Your code here
+  // If there are no blocks on end stack, this move is legal
   if(!stacks[endStack][0]) {
     return true;
-  }
-  const index1 = stacks[startStack].length - 1;
-  const index2 = stacks[endStack].length - 1;
+  } 
 
-  return (stacks[startStack][index1] < stacks[endStack][index2])
+  return (lastPiece(stacks[startStack]) < lastPiece(stacks[endStack]));
 }
 
 function checkForWin() {
