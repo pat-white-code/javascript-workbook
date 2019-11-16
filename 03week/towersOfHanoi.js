@@ -24,10 +24,10 @@ function printStacks() {
 
 function movePiece(startStack, endStack) {
   //removes and stores piece being moved
-  const removedPiece = stacks[startStack].pop();
+  const removedPiece = startStack.pop();
 
   //adds piece being moved to new stack
-  stacks[endStack].push(removedPiece);
+  endStack.push(removedPiece);
 }
 
 const lastPiece = (arr) =>  arr.find((item, index, arr) => {index === arr.length - 1})
@@ -56,14 +56,17 @@ function checkForWin() {
   return false;
 }
 
-function towersOfHanoi(startStack, endStack) {
+function towersOfHanoi(startInput, endInput) {
 
-  if(!isValid([startStack.toString(), endStack.toString()])){
+  const startStack = stacks[startInput];
+  const endStack = stacks[endInput];
+
+  if(!isValid([startInput.toString(), endInput.toString()])){
     console.log('Not Valid Input');
     return;
   }
   // Your code here
-  if(!isLegal(startStack, endStack)) {
+  if(!isLegal(startInput, endInput)) {
     console.log('Not Allowed');
     return;
   }
