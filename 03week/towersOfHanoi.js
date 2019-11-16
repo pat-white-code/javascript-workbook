@@ -34,18 +34,20 @@ const lastPiece = (arr) =>  arr.find((item, index, arr) => {index === arr.length
 
 function isLegal(startStack, endStack) {
   // If there are no blocks on end stack, this move is legal
-  if(!stacks[endStack][0]) {
+  if(!endStack[0]) {
     return true;
   } 
 
-  return (lastPiece(stacks[startStack]) < lastPiece(stacks[endStack]));
+  return (lastPiece(startStack) < lastPiece(endStack));
 }
 
 function checkForWin() {
-  // Your code here
+
+  //returns and saves an array representation of the object [1] represents the value of each key
   const objectArray = Object.entries(stacks);
   let gamePieces = 0;
   for (let i = 0 ; i < objectArray.length ; i ++) {
+    //[1] represents the value of each key
     gamePieces = gamePieces + objectArray[i][1].length;
   }
   for (let i = 1 ; i < objectArray.length ; i++) {
@@ -58,20 +60,24 @@ function checkForWin() {
 
 function towersOfHanoi(startInput, endInput) {
 
+  //find and store the arrays as startStack and endStack
   const startStack = stacks[startInput];
   const endStack = stacks[endInput];
 
+  //If input is not valid, do not allow
   if(!isValid([startInput.toString(), endInput.toString()])){
     console.log('Not Valid Input');
     return;
   }
-  // Your code here
-  if(!isLegal(startInput, endInput)) {
+  // If the move is not legal, do not allow
+  if(!isLegal(startStack, endStack)) {
     console.log('Not Allowed');
     return;
   }
+
   movePiece(startStack, endStack);
   turns++;
+
   if(checkForWin()) {
     console.log('WINNER!');
   };
@@ -131,7 +137,7 @@ if (typeof describe === 'function') {
         b: [1],
         c: []
       };
-      assert.equal(isLegal('a', 'b'), false);
+      assert.equal(isLegal(stacks['a'], stacks['b']), false);
     });
     it('should allow a legal move', () => {
       stacks = {
@@ -139,7 +145,7 @@ if (typeof describe === 'function') {
         b: [],
         c: []
       };
-      assert.equal(isLegal('a', 'c'), true);
+      assert.equal(isLegal(stacks['a'], stacks['c']), true);
     });
   });
   describe('#checkForWin()', () => {
