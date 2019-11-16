@@ -30,6 +30,13 @@ function movePiece(startStack, endStack) {
   endStack.push(removedPiece);
 }
 
+const isValid = (inputArr) => {
+  const allStrings = inputArr.map(input => input.toString())
+  let validRegex = /[a-d]/;
+  return allStrings.every(input => input.match(validRegex));
+}
+
+//helpter function to find and return the last piece of an array
 const lastPiece = (arr) =>  arr.find((item, index, arr) => {index === arr.length - 1})
 
 function isLegal(startStack, endStack) {
@@ -37,35 +44,37 @@ function isLegal(startStack, endStack) {
   if(!endStack[0]) {
     return true;
   } 
-
+  //If last piece of startStack is smaller than last piece of endStack, return true, otherwise false.
   return (lastPiece(startStack) < lastPiece(endStack));
 }
 
 function checkForWin() {
 
-  //returns and saves an array representation of the object [1] represents the value of each key
+  //returns and saves an array representation of the object.
   const objectArray = Object.entries(stacks);
   let gamePieces = 0;
-  for (let i = 0 ; i < objectArray.length ; i ++) {
-    //[1] represents the value of each key
-    gamePieces = gamePieces + objectArray[i][1].length;
-  }
+
+  //keyArray[1] represents the value of each key
+  objectArray.forEach(keyArray => {gamePieces += keyArray[1].length})
+
+  //if any array other than index 0 (stack a) has all the gamepieces, user wins
   for (let i = 1 ; i < objectArray.length ; i++) {
     if(objectArray[i][1].length === gamePieces) {
       return true;
     }
   };
+  //if no win...
   return false;
 }
 
 function towersOfHanoi(startInput, endInput) {
-
+  
   //find and store the arrays as startStack and endStack
   const startStack = stacks[startInput];
   const endStack = stacks[endInput];
 
   //If input is not valid, do not allow
-  if(!isValid([startInput.toString(), endInput.toString()])){
+  if(!isValid([startInput, endInput])){
     console.log('Not Valid Input');
     return;
   }
@@ -81,12 +90,6 @@ function towersOfHanoi(startInput, endInput) {
   if(checkForWin()) {
     console.log('WINNER!');
   };
-}
-
-const isValid = (inputArr) => {
-  const allStrings = inputArr.map(input => input.toString())
-  let validRegex = /[a-d]/;
-  return allStrings.every(input => input.match(validRegex));
 }
 
 function getPrompt() {
