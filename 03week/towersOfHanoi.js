@@ -33,7 +33,7 @@ function movePiece(startStack, endStack) {
 const isValid = (inputArr) => {
   const allStrings = inputArr.map(input => input.toString())
   let validRegex = /[a-d]/;
-  return allStrings.every(input => input.match(validRegex));
+  return allStrings.every(input => (input.length === 1 && input.match(validRegex)));
 }
 
 //helpter function to find and return the last piece of an array
@@ -128,7 +128,11 @@ if (typeof describe === 'function') {
   describe('isValid() *new function* new tests(2)', ()=>{
     it('should stop invalid input', ()=>{
       assert.equal(isValid([1, 2]), false);
-    });//new test #2
+    });//new test #2a
+    it('should stop invalid input', ()=>{
+      assert.equal(isValid(['aaa', 'b']), false);
+    });//new test #2b
+
     it('should not block valid input', ()=>{
       assert.equal(isValid(['a', 'b']), true);
     })
