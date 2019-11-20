@@ -93,8 +93,8 @@ class Board {
       let checkerPiece = new Checker('black');
       // Place that checker on the grid at the position corresponding with the index in the positions array
       //i = [0,1]
-      let placeRow = blackPositions[i][0];
-      let placeCol = blackPositions[i][1];
+      let placeRow = blackPositions[j][0];
+      let placeCol = blackPositions[j][1];
       this.grid[placeRow][placeCol] = checkerPiece;
 
       // Push the checker into your this.checkers array
@@ -102,13 +102,13 @@ class Board {
       // Do all three steps above for a 'black' checker
     };
   }
-  }
+}
 
   // In a for loop, iterate over the range from 0 - 11, with each index you want to:
 
 
 
-}
+
 
 class Game {
   constructor() {
@@ -116,6 +116,7 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.createCheckers();
   }
 }
 
