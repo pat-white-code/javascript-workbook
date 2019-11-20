@@ -121,9 +121,9 @@ class Board {
     //pos = coordinate pair such as [0,5]. row = pos[0]. col = pos[1];
     let killedChecker = this.selectChecker(pos[0], pos[1]);
     //4, 1
-    killedIndex = this.checkers.indexOf(killedChecker);
+    let killedIndex = this.checkers.indexOf(killedChecker);
     this.checkers.splice(killedIndex, 1);
-    this.grid[pos[0], pos[1]] = null;
+    this.grid[pos[0]][pos[1]] = null;
   }
 
 }
@@ -142,6 +142,10 @@ class Game {
   }
   //Next, in your Game class, create a this.moveChecker method that takes two parameters start, end. These two arguments will each contain a row and a column, eg. 50, 41. Inside the method, use your board helper method selectChecker to select the checker at your starting rowcolumncoordinates and set it to a local variable checker. Then set that spot on the grid to null and set the spot at the end rowcolumn coordinate to the checker.
   moveChecker(start, end) {
+    let startRow = Number(start[0]);
+    let startCol = Number(start[1]);
+    let endRow = Number(end[0]);
+    let endCol = Number(end[1]);
     //start is a string with length of 2, such as 40, where row = string[0] and row =string[1]. 
     const checker = this.board.selectChecker(start[0], start[1]);
     //sets starting position to null (piece removed)
@@ -150,8 +154,8 @@ class Game {
     this.board.grid[end[0]][end[1]] = checker;
     const distance = difference(start[0], end[0]);
     if(distance > 1) {
-      let killRow = (start[0] + end[0]) / 2;
-      let killCol = (start[1] + end[1]) / 2;
+      let killRow = (startRow + endRow) / 2;
+      let killCol = (startCol + endCol) / 2;
       this.board.killChecker([killRow, killCol]);//[4, 1]
     }
   }
