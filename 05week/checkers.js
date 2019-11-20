@@ -24,6 +24,7 @@ class Board {
     //SPEC 2.1 - In your Board class, create an attribute called this.checkers and assign it to an empty array. 
     this.checkers = []
 
+    this.selectChecker = this.selectChecker.bind(this)
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -102,6 +103,14 @@ class Board {
       // Do all three steps above for a 'black' checker
     };
   }
+  //In your Board class, write a method this.selectChecker that takes two arguments row, column. All this does is return the checker at that particular spot on this.grid. This will be a handy "helper" function.
+  selectChecker(row, col){
+    const checker = this.grid[row][col];
+    return checker;
+  }
+
+  //TODO: THIS MAY HAVE TO BE BOUND TO THIS.
+
 }
 
   // In a for loop, iterate over the range from 0 - 11, with each index you want to:
@@ -117,6 +126,16 @@ class Game {
   start() {
     this.board.createGrid();
     this.board.createCheckers();
+  }
+  //Next, in your Game class, create a this.moveChecker method that takes two parameters start, end. These two arguments will each contain a row and a column, eg. 50, 41. Inside the method, use your board helper method selectChecker to select the checker at your starting rowcolumncoordinates and set it to a local variable checker. Then set that spot on the grid to null and set the spot at the end rowcolumn coordinate to the checker.
+  moveChecker(start, end) {
+    //start is an array [50, 41] with 0 and 1. 0 = row, 1 = col
+    const checker = this.board.selectChecker(start[0], start[1]);
+    //sets starting position to null (piece removed)
+    this.board.grid[start[0]][start[1]] = null;
+    //sets ending position to checker (piece placed)
+    this.board.grid[end[0]][end[1]] = checker;
+
   }
 }
 
