@@ -171,6 +171,24 @@ class Game {
     //sets starting position to null (piece removed)
     //checks if move is legal
     
+    if(!legalCol (startRow, endRow) || !legalRow(checker, startCol, endCol)) {
+      return console.log('invalid move')
+    }
+
+    const calculateAdj = (checker, startRow, startCol) => {
+      jumpLegal = null;
+      let adjCol1 = startCol + 1;
+      let adjCol2 = startCol - 1;
+      let adjRow = null
+      if(isWhite(checker)) {
+        adjRow = startRow + 1;
+      } else adjRow = startRow - 1;
+
+      return [[adjRow, adjCol1], [adjRow, adjCol2]]
+    }
+
+    const adjacents = calculateAdj (checker, startRow, StartCol);
+    //if grid at either adjacents[0] || adjacents[1] jumpLegal = true
   
     this.board.grid[start[0]][start[1]] = null;
     //sets ending position to checker (piece placed)
