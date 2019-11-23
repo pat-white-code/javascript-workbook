@@ -7,16 +7,36 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+const isWhite = (checker) => {
+  return checker.symbol === String.fromCharCode(0x125CB);
+}
+
 function difference(a, b) {
   return Math.abs(a - b);
 }
 
-function Checker(color) {
-  // Your code here
-  if(color === 'white') {
-    this.symbol = String.fromCharCode(0x125CB);
+const legalRow = (checker, startRow, endRow) => {
+  //if checker is white, moves to positive row
+  //if checker is black, moves to negative row
+  //white
+  if(isWhite(checker)) {
+    return startRow > endRow;
   } else {
-    this.symbol = String.fromCharCode(0x125CF);
+    return startRow < endRow
+  }
+}
+const legalCol = (startCol, endCol) => {
+  return difference(startCol, endCol) === 1;
+}
+
+class Checker{
+  constructor(color) {
+  // Your code here
+    if (color === 'white') {
+      this.symbol = String.fromCharCode(0x125CB);
+    } else {
+      this.symbol = String.fromCharCode(0x125CF);
+    }
   }
 }
 
@@ -142,13 +162,16 @@ class Game {
   }
   //Next, in your Game class, create a this.moveChecker method that takes two parameters start, end. These two arguments will each contain a row and a column, eg. 50, 41. Inside the method, use your board helper method selectChecker to select the checker at your starting rowcolumncoordinates and set it to a local variable checker. Then set that spot on the grid to null and set the spot at the end rowcolumn coordinate to the checker.
   moveChecker(start, end) {
+    //start is a string with length of 2, such as 40, where row = string[0] and row =string[1]. 
     let startRow = Number(start[0]);
     let startCol = Number(start[1]);
     let endRow = Number(end[0]);
     let endCol = Number(end[1]);
-    //start is a string with length of 2, such as 40, where row = string[0] and row =string[1]. 
     const checker = this.board.selectChecker(start[0], start[1]);
     //sets starting position to null (piece removed)
+    //checks if move is legal
+    
+  
     this.board.grid[start[0]][start[1]] = null;
     //sets ending position to checker (piece placed)
     this.board.grid[end[0]][end[1]] = checker;
