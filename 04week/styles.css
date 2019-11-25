@@ -15,7 +15,6 @@ body {
 }
 
 .board-wrapper {
-  height: 500px;
   border: 1px red solid;
   display: flex;
   justify-content: center;
@@ -23,7 +22,7 @@ body {
 
 .board {
   height: 100%;
-  width: 75%;
+  width: 65%;
   border: 1px blue solid;
 }
 
@@ -34,11 +33,22 @@ body {
   justify-content: center;
 }
 
+.winner {
+  background-color: greenyellow;
+}
+
+.loser {
+  background-color: red;
+}
+
 .solution-spot {
   height: 100%;
   width: 75px;
   border: 1px blue solid;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .row__spot {
@@ -53,17 +63,18 @@ body {
 
 .row__results {
   height: 100%;
-  width: 150px;
+  width: 75px;
   display: flex;
   border: 1px red solid;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .row__results__hint {
-  height:50%;
-  width:50%;
+  height: 25px;
+  width: 25px;
   border: 1px red solid;
-
+  border-radius: 50%;
 }
 
 .player-wrapper {

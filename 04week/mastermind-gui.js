@@ -69,6 +69,13 @@ function hintDom(pegs, color) {
   }
 }
 
+function revealSolution(solution){
+  let solutionSpots = document.querySelectorAll('.solution-spot');
+  for(let i = 0 ; i < solutionSpots.length ; i ++) {
+    solutionSpots[i].innerText = solution[i]
+  }
+}
+
 function generateHint(guess) {
   // your code here
   const solutionArray = solution.split('');
@@ -98,6 +105,9 @@ function generateHint(guess) {
   return `${redPegs}-${whitePegs}`
 }
 
+function renderLoss() {
+  document.querySelector('.solution-row').classList.add('loser')
+}
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
@@ -105,7 +115,15 @@ function mastermind(guess) {
 
   if(checkWin(guess, solution)){
     console.log(checkWin(guess, solution));
+    revealSolution(solution);
+    renderWin();
     return checkWin(guess, solution);
+  }
+
+  if(checkLoss(solution) === `You ran out of turns! The solution was ${solution}`) {
+    revealSolution(solution)
+    renderLoss()
+    return;
   }
 
   let hint = generateHint(guess);
@@ -143,4 +161,8 @@ function checkLoss(solution) {
   } else {
     return 'Guess Again.'
   }
+}
+
+function renderWin(){
+  document.querySelector('.solution-row').classList.add('winner');
 }
