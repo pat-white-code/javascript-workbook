@@ -14,14 +14,25 @@ function placeBall(event) {
   placePiece(piece, domSpot);
   console.log(domSpot);
   domSpot.classList.remove('unplayed');
+  domSpot.classList.add('played')
   input += piece;
   console.log(input);
+}
+
+function undo() {
+  let played = document.querySelectorAll(`[data-turn="${board.length}"] .row__spot.played`);
+  let lastPlayed = played[played.length-1];
+  lastPlayed.innerText = '';
+  lastPlayed.classList.remove('played');
+  lastPlayed.classList.add('unplayed');
 }
 
 //this needs to happen at beginning of each turn
 document.querySelector(`[data-turn="${board.length}"] .row__submit`).addEventListener('click', ()=>{
   mastermind(input);
 });
+
+document.querySelector(`[data-turn="${board.length}"] .row__undo`).addEventListener('click', undo);
 
 // document.querySelector('.row__submit').addEventListener('click', ()=>{console.log(guess)});
 
@@ -103,11 +114,16 @@ function mastermind(guess) {
     mastermind(guess);
   });
   
+  document.querySelector(`[data-turn="${board.length}"] .row__undo`).removeEventListener('click', undo);
+
   //changes the turn
   board.push(`${guess} ${hint}`);
+  
   document.querySelector(`[data-turn="${board.length}"] .row__submit`).addEventListener('click', ()=>{
     mastermind(input);
   });
+
+  document.querySelector(`[data-turn="${board.length}"] .row__undo`).addEventListener('click', undo);
 
   input = '';
   console.log(`turn: ${board.length}`);
