@@ -6,20 +6,21 @@ let board = [];
 let solution = '';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
-let guess = '';
+let input = '';
 
 function placeBall(event) {
   const piece = event.target.dataset.piece;
-  const domSpot = document.querySelector('.row__spot.unplayed');
+  const domSpot = document.querySelector(`[data-turn="${board.length}"] .row__spot.unplayed`);
   placePiece(piece, domSpot);
   console.log(domSpot);
   domSpot.classList.remove('unplayed');
-  guess += piece;
-  console.log(guess);
+  input += piece;
+  console.log(input);
 }
 
-document.querySelector('.row__submit').addEventListener('click', ()=>{
-  mastermind(guess);
+//this needs to happen at beginning of each turn
+document.querySelector(`[data-turn="${board.length}"] .row__submit`).addEventListener('click', ()=>{
+  mastermind(input);
 });
 
 // document.querySelector('.row__submit').addEventListener('click', ()=>{console.log(guess)});
@@ -47,6 +48,14 @@ function generateSolution() {
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function hintDom(pegs, color) {
+  let pegDom = document.querySelectorAll(`[data-turn="${board.length}"] .row__results__hint.unplayed`);
+  for(let i = 0 ; i < pegs ; i ++) {
+    pegDom[i].classList.add(color);
+    pegDom[i].classList.remove("unplayed");
+  }
 }
 
 function generateHint(guess) {
@@ -78,14 +87,6 @@ function generateHint(guess) {
   return `${redPegs}-${whitePegs}`
 }
 
-function hintDom(pegs, color) {
-  let pegDom = document.querySelectorAll(".row__results__hint.unplayed");
-  for(let i = 0 ; i < pegs ; i ++) {
-    pegDom[i].classList.add(color);
-    pegDom[i].classList.remove("unplayed");
-  }
-}
-
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
@@ -97,7 +98,18 @@ function mastermind(guess) {
   }
 
   let hint = generateHint(guess);
+
+  document.querySelector(`[data-turn="${board.length}"] .row__submit`).removeEventListener('click', ()=>{
+    mastermind(guess);
+  });
+  
+  //changes the turn
   board.push(`${guess} ${hint}`);
+  document.querySelector(`[data-turn="${board.length}"] .row__submit`).addEventListener('click', ()=>{
+    mastermind(input);
+  });
+
+  input = '';
   console.log(`turn: ${board.length}`);
   console.log(checkLoss(solution));
 }
