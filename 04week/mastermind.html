@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <section class="main-wrapper">
+    <header class="header">
+      <h1 class="header__h1">MasterMind.</h1>
+    </header>
+    <main class="board-wrapper">
+      <div class="board">
+        <div class="solution-row">
+          <div class="solution-spot"></div>
+          <div class="solution-spot"></div>
+          <div class="solution-spot"></div>
+          <div class="solution-spot"></div>
+        </div>
+        <div class="board__row">
+          <div class="row__spot unplayed"></div>
+          <div class="row__spot unplayed"></div>
+          <div class="row__spot unplayed"></div>
+          <div class="row__spot unplayed"></div>
+          <div class="row__results">
+            <div class="row__results__hint unplayed"></div>
+            <div class="row__results__hint unplayed"></div>
+            <div class="row__results__hint unplayed"></div>
+            <div class="row__results__hint unplayed"></div>
+          </div>
+          <button class="row__undo">Undo</button>
+          <button class="row__submit">Check</button>
+        </div>
+      </div>
+    </main>
+    <section class="player-wrapper">
+      <div class="player">
+        <div class="player__piece" data-piece="a">A</div>
+        <div class="player__piece" data-piece="b">B</div>
+        <div class="player__piece" data-piece="c">C</div>
+        <div class="player__piece" data-piece="d">D</div>
+        <div class="player__piece" data-piece="e">E</div>
+        <div class="player__piece" data-piece="f">F</div>
+        <div class="player__piece" data-piece="g">G</div>
+        <div class="player__piece" data-piece="h">H</div>
+      </div>
+    </section>
+  </section>
+  <script src="mastermind-gui.js"></script>
+</body>
+</html>

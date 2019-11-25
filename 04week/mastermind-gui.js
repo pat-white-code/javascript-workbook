@@ -1,16 +1,36 @@
 'use strict';
 
-
-const assert = require('assert');
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+console.log('mastermind here...')
 
 let board = [];
 let solution = '';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+let guess = '';
+
+function placeBall(event) {
+  const piece = event.target.dataset.piece;
+  const domSpot = document.querySelector('.row__spot.unplayed');
+  placePiece(piece, domSpot);
+  console.log(domSpot);
+  domSpot.classList.remove('unplayed');
+  guess += piece;
+  console.log(guess);
+}
+
+document.querySelector('.row__submit').addEventListener('click', ()=>{
+  mastermind(guess);
+});
+
+// document.querySelector('.row__submit').addEventListener('click', ()=>{console.log(guess)});
+
+const placePiece = (piece, domSpot) => {
+  domSpot.innerText = piece;
+}
+
+document.querySelectorAll('.player__piece').forEach(element => {
+  element.addEventListener('click', placeBall);
+})
 
 function printBoard() {
   for (let i = 0; i < board.length; i++) {
@@ -51,8 +71,21 @@ function generateHint(guess) {
       solutionArray[targetIndex] = null;
     }
   }
+
+  hintDom(redPegs, 'red-peg');
+  hintDom(whitePegs, 'white-peg');
+
   return `${redPegs}-${whitePegs}`
 }
+
+function hintDom(pegs, color) {
+  let pegDom = document.querySelectorAll(".row__results__hint.unplayed");
+  for(let i = 0 ; i < pegs ; i ++) {
+    pegDom[i].classList.add(color);
+    pegDom[i].classList.remove("unplayed");
+  }
+}
+
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
@@ -82,43 +115,4 @@ function checkLoss(solution) {
   } else {
     return 'Guess Again.'
   }
-}
-
-
-function getPrompt() {
-  rl.question('guess: ', (guess) => {
-    mastermind(guess);
-    printBoard();
-    getPrompt();
-  });
-}
-
-// Tests
-
-if (typeof describe === 'function') {
-  solution = 'abcd';
-  describe('#mastermind()', () => {
-    it('should register a guess and generate hints', () => {
-      mastermind('aabb');
-      assert.equal(board.length, 1);
-    });
-    it('should be able to detect a win', () => {
-      assert.equal(mastermind(solution), 'You guessed it!');
-    });
-  });
-
-  describe('#generateHint()', () => {
-    it('should generate hints', () => {
-      assert.equal(generateHint('abdc'), '2-2');
-    });
-    it('should generate hints if solution has duplicates', () => {
-      assert.equal(generateHint('aabb'), '1-1');
-    });
-
-  });
-
-} else {
-
-  generateSolution();
-  getPrompt();
 }

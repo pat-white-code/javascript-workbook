@@ -1,0 +1,101 @@
+body {
+
+}
+
+.header {
+  height: 150px;
+  border: 1px red solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__h1 {
+  font-size: 5em;
+}
+
+.board-wrapper {
+  height: 500px;
+  border: 1px red solid;
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  height: 100%;
+  width: 75%;
+  border: 1px blue solid;
+}
+
+.board__row, .solution-row {
+  height: 75px;
+  border: 1px red solid;
+  display: flex;
+  justify-content: center;
+}
+
+.solution-spot {
+  height: 100%;
+  width: 75px;
+  border: 1px blue solid;
+  border-radius: 50%;
+}
+
+.row__spot {
+  height: 100%;
+  width: 75px;
+  border: 1px purple solid;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row__results {
+  height: 100%;
+  width: 150px;
+  display: flex;
+  border: 1px red solid;
+  flex-wrap: wrap;
+}
+
+.row__results__hint {
+  height:50%;
+  width:50%;
+  border: 1px red solid;
+
+}
+
+.player-wrapper {
+  height: 200px;
+  border: 1px red solid;
+  display: flex;
+  justify-content: center;
+}
+
+.player {
+  height: 100%;
+  width: 55%;
+  border: 1px blue solid;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.player__piece {
+  height: 100px;
+  width: 100px;
+  border: 1px orange solid;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.white-peg {
+  background-color: floralwhite;
+}
+
+.red-peg {
+  background-color: crimson;
+}
