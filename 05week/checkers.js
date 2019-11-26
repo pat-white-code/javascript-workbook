@@ -7,19 +7,48 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+const isWhite = (checker) => {
+  return checker.symbol === String.fromCharCode(0x125CB);
+}
 
-function Checker(color) {
-  // Your code here
-  if(color === 'white') {
-    this.symbol = String.fromCharCode(0x125CB);
+function difference(a, b) {
+  return Math.abs(a - b);
+}
+
+const legalRow = (checker, startRow, endRow) => {
+  //if checker is white, moves to positive row
+  //if checker is black, moves to negative row
+  //white
+  if(isWhite(checker)) {
+    return startRow > endRow;
   } else {
-    this.symbol = String.fromCharCode(0x125CF);
+    return startRow < endRow
+  }
+}
+const legalCol = (startCol, endCol) => {
+  return difference(startCol, endCol) === 1;
+}
+
+class Checker{
+  constructor(color) {
+  // Your code here
+    if (color === 'white') {
+      this.symbol = String.fromCharCode(0x125CB);
+    } else {
+      this.symbol = String.fromCharCode(0x125CF);
+    }
   }
 }
 
 class Board {
   constructor() {
     this.grid = []
+  
+    //SPEC 2.1 - In your Board class, create an attribute called this.checkers and assign it to an empty array. 
+    this.checkers = []
+
+    this.selectChecker = this.selectChecker.bind(this);
+    this.killChecker = this.killChecker.bind(this);
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -56,9 +85,72 @@ class Board {
     }
     console.log(string);
   }
+  //Now create a method called this.createCheckers. In it, let's define our starting positions of the checkers on the grid.
 
-  // Your code here
+  createCheckers() {
+
+    //In it, let's define our starting positions of the checkers on the grid. In local variables, define whitePositions and blackPositions as array of [row, column] coordinates:
+
+    let whitePositions = [[0, 1], [0, 3], [0, 5], [0, 7],
+    [1, 0], [1, 2], [1, 4], [1, 6],
+    [2, 1], [2, 3], [2, 5], [2, 7]];
+
+    let blackPositions = [[5, 0], [5, 2], [5, 4], [5, 6],
+    [6, 1], [6, 3], [6, 5], [6, 7],
+    [7, 0], [7, 2], [7, 4], [7, 6]]
+
+    //In a for loop, iterate over the range from 0 - 11, with each index you want to:
+    for(let i = 0 ; i < 12 ; i++) {
+      //Instantiate a 'white' Checker
+      let checkerPiece = new Checker('white');
+      // Place that checker on the grid at the position corresponding with the index in the positions array
+      //i = [0,1]
+      let placeRow = whitePositions[i][0];
+      let placeCol = whitePositions[i][1];
+      this.grid[placeRow][placeCol] = checkerPiece;
+
+      // Push the checker into your this.checkers array
+      this.checkers.push(checkerPiece);
+      // Do all three steps above for a 'black' checker
+    };
+    for(let j = 0 ; j < 12 ; j++) {
+      //Instantiate a 'white' Checker
+      let checkerPiece = new Checker('black');
+      // Place that checker on the grid at the position corresponding with the index in the positions array
+      //i = [0,1]
+      let placeRow = blackPositions[j][0];
+      let placeCol = blackPositions[j][1];
+      this.grid[placeRow][placeCol] = checkerPiece;
+
+      // Push the checker into your this.checkers array
+      this.checkers.push(checkerPiece);
+      // Do all three steps above for a 'black' checker
+    };
+  }
+  //In your Board class, write a method this.selectChecker that takes two arguments row, column. All this does is return the checker at that particular spot on this.grid. This will be a handy "helper" function.
+  selectChecker(row, col){
+    let checker = this.grid[row][col];
+    return checker;
+  }
+
+  //TODO: THIS MAY HAVE TO BE BOUND TO THIS.
+
+  //In your Board class, write a method killChecker that take a single argument position which is a coordinate pair, eg. [0, 5]. In it, use this.selectChecker to grab the checker at the position given. Find the index of that checker in the this.checkers array. then remove it by .splice()ing it out. Then assign the position on this.grid to null. That checker is dead.
+
+  killChecker(pos){//[4, 1]
+    //pos = coordinate pair such as [0,5]. row = pos[0]. col = pos[1];
+    let killedChecker = this.selectChecker(pos[0], pos[1]);
+    //4, 1
+    let killedIndex = this.checkers.indexOf(killedChecker);
+    this.checkers.splice(killedIndex, 1);
+    this.grid[pos[0]][pos[1]] = null;
+  }
+
 }
+
+
+
+
 
 class Game {
   constructor() {
@@ -66,7 +158,32 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.createCheckers();
   }
+  //Next, in your Game class, create a this.moveChecker method that takes two parameters start, end. These two arguments will each contain a row and a column, eg. 50, 41. Inside the method, use your board helper method selectChecker to select the checker at your starting rowcolumncoordinates and set it to a local variable checker. Then set that spot on the grid to null and set the spot at the end rowcolumn coordinate to the checker.
+  moveChecker(start, end) {
+    //start is a string with length of 2, such as 40, where row = string[0] and row =string[1]. 
+    let startRow = Number(start[0]);
+    let startCol = Number(start[1]);
+    let endRow = Number(end[0]);
+    let endCol = Number(end[1]);
+    const checker = this.board.selectChecker(start[0], start[1]);
+    //sets starting position to null (piece removed)
+    //checks if move is legal
+    
+  
+    this.board.grid[start[0]][start[1]] = null;
+    //sets ending position to checker (piece placed)
+    this.board.grid[end[0]][end[1]] = checker;
+    const distance = difference(start[0], end[0]);
+    if(distance > 1) {
+      let killRow = (startRow + endRow) / 2;
+      let killCol = (startCol + endCol) / 2;
+      this.board.killChecker([killRow, killCol]);//[4, 1]
+    }
+  }
+
+  //In the Game class, in the moveChecker method, after you have moved the checker, check to see if the distance of the start row and the end row is 2 by finding the absolute value of the difference between the rows. If so, which means you must have jumped a checker, find the killPostition by finding the midpoint between the start and end positions. Then killChecker.
 }
 
 function getPrompt() {
