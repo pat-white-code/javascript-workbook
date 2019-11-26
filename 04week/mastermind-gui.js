@@ -37,7 +37,7 @@ document.querySelector(`[data-turn="${board.length}"] .row__undo`).addEventListe
 // document.querySelector('.row__submit').addEventListener('click', ()=>{console.log(guess)});
 
 const placePiece = (piece, domSpot) => {
-  domSpot.innerText = piece;
+  domSpot.classList.add(`${piece}`);
 }
 
 document.querySelectorAll('.player__piece').forEach(element => {

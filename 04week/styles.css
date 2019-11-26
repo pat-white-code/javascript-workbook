@@ -1,5 +1,10 @@
-body {
+@font-face {
+  font-family: neon;
+  src: url(./NEON____.TTF);
+}
 
+body {
+  background-color: rgb(0, 0, 50);
 }
 
 .header {
@@ -12,6 +17,129 @@ body {
 
 .header__h1 {
   font-size: 5em;
+  /* font-family: neon-stream, sans-serif; */
+  font-family: neon;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.neon-yellow {
+  background-color: rgb(255, 251, 216);
+  box-shadow: .1vw 0vw .25vw rgb(255, 251, 216), 
+  .2vw 0vw .25vw rgb(255, 251, 216), 
+  .4vw 0vw .25vw rgb(255, 251, 216), 
+  
+  .1vw 0vw   0vw #f2e857, 
+  .2vw 0vw   0vw #f2e857, 
+  .4vw 0vw   0vw #f2e857,
+  .1vw 0vw  .1vw #f2e857, 
+  .2vw 0vw  .1vw #f2e857, 
+  .4vw 0vw  .1vw #f2e857,
+  .1vw 0vw   2vw #f2e857, 
+  .2vw 0vw   2vw #f2e857, 
+  .4vw 0vw   2vw #f2e857, 
+
+  .1vw 0vw   1vw #e5c40b, 
+  .2vw 0vw   1vw #e5c40b, 
+  .4vw 0vw   5vw #e5c40b, 
+  .1vw 0vw   5vw #e5c40b, 
+  .2vw 0vw  20vw #e5c40b, 
+  .4vw 0vw  10vw #e5c40b,
+  .1vw 0vw  10vw #e5c40b, 
+  .2vw 0vw  30vw #e5c40b, 
+  .4vw 0vw  10vw #e5c40b;
+}
+
+.neon-red {
+  background-color: rgb(255, 214, 214);
+  box-shadow:
+  .1vw 0vw .25vw rgb(255, 214, 214),
+  .2vw 0vw .25vw rgb(255, 214, 214), 
+  .4vw 0vw .25vw rgb(255, 216, 216), 
+  
+  .1vw 0vw   0vw #f25757, 
+  .2vw 0vw   0vw #f25757, 
+  .4vw 0vw   0vw #f25757,
+  .1vw 0vw  .1vw #f25757, 
+  .2vw 0vw  .1vw #f25757, 
+  .4vw 0vw  .1vw #f25757,
+  .1vw 0vw   2vw #f25757, 
+  .2vw 0vw   2vw #f25757, 
+  .4vw 0vw   2vw #f25757, 
+  .1vw 0vw   1vw #e50b0b, 
+  .2vw 0vw   1vw #e50b0b, 
+  .4vw 0vw   5vw #e50b0b, 
+  .1vw 0vw   5vw #e50b0b, 
+  .2vw 0vw  20vw #e50b0b, 
+  .4vw 0vw  10vw #e50b0b,
+  .1vw 0vw  10vw #e50b0b, 
+  .2vw 0vw  30vw #e50b0b, 
+  .4vw 0vw  10vw #e50b0b;
+}
+
+.neon-text {
+  color: #ffd8d8;
+  text-shadow: 
+  .1vw 0vw .25vw rgb(255, 216, 216), 
+  .2vw 0vw .25vw rgb(255, 214, 214), 
+  .4vw 0vw .25vw rgb(255, 216, 216), 
+  
+  .1vw 0vw   0vw #f25757, 
+  .2vw 0vw   0vw #f25757, 
+  .4vw 0vw   0vw #f25757,
+  .1vw 0vw  .1vw #f25757, 
+  .2vw 0vw  .1vw #f25757, 
+  .4vw 0vw  .1vw #f25757,
+  .1vw 0vw   2vw #f25757, 
+  .2vw 0vw   2vw #f25757, 
+  .4vw 0vw   2vw #f25757, 
+  .1vw 0vw   1vw #e50b0b, 
+  .2vw 0vw   1vw #e50b0b, 
+  .4vw 0vw   5vw #e50b0b, 
+  .1vw 0vw   5vw #e50b0b, 
+  .2vw 0vw  20vw #e50b0b, 
+  .4vw 0vw  10vw #e50b0b,
+  .1vw 0vw  10vw #e50b0b, 
+  .2vw 0vw  30vw #e50b0b, 
+  .4vw 0vw  10vw #e50b0b;
+}
+
+.a {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+      rgb(253, 162, 177) 0%, rgb(168, 3, 3) 100%);
+}
+
+.b {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+      rgb(227, 162, 253) 0%, rgb(130, 3, 168) 100%);
+}
+
+.c {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+      rgb(163, 162, 253) 0%, rgb(3, 6, 168) 100%);
+}
+.d {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+      rgb(162, 247, 253) 0%, rgb(3, 116, 168) 100%);
+}
+.e {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+      rgb(162, 253, 177) 0%, rgb(3, 168, 3) 100%);
+}
+.f {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+      rgb(251, 253, 162) 0%, rgb(157, 168, 3) 100%);
+}
+.g {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+  rgb(162, 253, 177) 0%, rgb(110, 165, 119) 100%);
+}
+.color {
+  background-color: rgb(162, 253, 177);
+}
+.h {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+      rgb(253, 203, 162) 0%, rgb(168, 91, 3) 100%);
 }
 
 .board-wrapper {
@@ -73,7 +201,6 @@ body {
 .row__results__hint {
   height: 25px;
   width: 25px;
-  border: 1px red solid;
   border-radius: 50%;
 }
 
@@ -96,7 +223,6 @@ body {
 .player__piece {
   height: 100px;
   width: 100px;
-  border: 1px orange solid;
   border-radius: 50%;
   display: flex;
   align-items: center;
