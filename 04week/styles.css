@@ -106,46 +106,80 @@ body {
 
 .a {
   background-image: radial-gradient(farthest-corner at 76px 30px,
-      rgb(253, 162, 177) 0%, rgb(168, 3, 3) 100%);
+      rgb(253, 162, 177) 0%, rgb(168, 3, 3) 60%, rgb(0, 0, 0) 100%);
+}
+
+.row__spot.a {
+  background-image: radial-gradient(farthest-corner at 50px 25px,
+      rgb(253, 162, 177) 0%, rgb(168, 3, 3) 60%, rgb(0, 0, 0) 100%);
 }
 
 .b {
   background-image: radial-gradient(farthest-corner at 76px 30px,
-      rgb(227, 162, 253) 0%, rgb(130, 3, 168) 100%);
+      rgb(227, 162, 253) 0%, rgb(130, 3, 168) 60%, rgb(0, 0, 0) 100%);
+}
+.row__spot.b {
+  background-image: radial-gradient(farthest-corner at 50px 25px,
+      rgb(227, 162, 253) 0%, rgb(130, 3, 168) 60%, rgb(0, 0, 0) 100%);
 }
 
 .c {
   background-image: radial-gradient(farthest-corner at 76px 30px,
-      rgb(163, 162, 253) 0%, rgb(3, 6, 168) 100%);
+      rgb(163, 162, 253) 0%, rgb(3, 6, 168) 60%, rgb(0, 0, 0) 100%);
+}
+.row__spot.c {
+  background-image: radial-gradient(farthest-corner at 50px 25px,
+      rgb(163, 162, 253) 0%, rgb(3, 6, 168) 60%, rgb(0, 0, 0) 100%);
 }
 .d {
   background-image: radial-gradient(farthest-corner at 76px 30px,
-      rgb(162, 247, 253) 0%, rgb(3, 116, 168) 100%);
+      rgb(162, 247, 253) 0%, rgb(3, 116, 168) 60%, rgb(0, 0, 0) 100%);
 }
+.row__spot.d {
+  background-image: radial-gradient(farthest-corner at 50px 25px,
+      rgb(162, 247, 253) 0%, rgb(3, 116, 168) 60%, rgb(0, 0, 0) 100%);
+}
+
 .e {
   background-image: radial-gradient(farthest-corner at 76px 30px,
-      rgb(162, 253, 177) 0%, rgb(3, 168, 3) 100%);
+      rgb(162, 253, 177) 0%, rgb(3, 168, 3) 60%, rgb(0, 0, 0) 100%);
+}
+.row__spot.e {
+  background-image: radial-gradient(farthest-corner at 50px 25px,
+      rgb(162, 253, 177) 0%, rgb(3, 168, 3) 60%, rgb(0, 0, 0) 100%);
 }
 .f {
   background-image: radial-gradient(farthest-corner at 76px 30px,
-      rgb(251, 253, 162) 0%, rgb(157, 168, 3) 100%);
+      rgb(251, 253, 162) 0%, rgb(157, 168, 3) 60%, rgb(0, 0, 0) 100%);
+}
+.row__spot.f {
+  background-image: radial-gradient(farthest-corner at 50px 25px,
+      rgb(251, 253, 162) 0%, rgb(157, 168, 3) 60%, rgb(0, 0, 0) 100%);
 }
 .g {
   background-image: radial-gradient(farthest-corner at 76px 30px,
-  rgb(162, 253, 177) 0%, rgb(110, 165, 119) 100%);
-}
-.unplayed {
-  background-image: radial-gradient(farthest-corner at 76px 30px,
-  rgb(3, 3, 3) 0%, rgb(49, 49, 49) 100%);
-}
-.color {
-  background-color: rgb(162, 253, 177);
-}
-.h {
-  background-image: radial-gradient(farthest-corner at 76px 30px,
-      rgb(253, 203, 162) 0%, rgb(168, 91, 3) 100%);
+  rgb(162, 253, 177) 0%, rgb(110, 165, 119) 60%, rgb(0, 0, 0) 100%);
 }
 
+.row__spot.g {
+  background-image: radial-gradient(farthest-corner at 50px 25px
+  rgb(162, 253, 177) 0%, rgb(110, 165, 119) 60%, rgb(0, 0, 0) 100%);
+}
+
+.h {
+  background-image: radial-gradient(farthest-corner at 76px 30px,
+  rgb(253, 203, 162) 0%, rgb(168, 91, 3) 60%, rgb(0, 0, 0) 100%);
+}
+
+.row__spot.h {
+  background-image: radial-gradient(farthest-corner at 50px 25px,
+  rgb(253, 203, 162) 0%, rgb(168, 91, 3) 60%, rgb(0, 0, 0) 100%);
+}
+
+.unplayed {
+  background-image: radial-gradient(farthest-corner at 50px 25px,
+  rgb(3, 3, 3) 0%, rgb(49, 49, 49) 100%);
+}
 .board-wrapper {
   border: 1px red solid;
   display: flex;
