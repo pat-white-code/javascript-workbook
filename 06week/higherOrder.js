@@ -8,6 +8,19 @@ function forEach(arr, callback) {
 
 function map(arr, callback) {
   // Your code here
+  //loop through the array
+  //callback should be able to access each item's value, index, and the array
+  //to each item in the array, perform a function
+  //push the result of the function to a new array
+  //return the new array
+  let mappedArray = []
+  for(let i=0 ; i<arr.length ; i++) {
+    let item = arr[i]
+    let index = i
+    let array = arr;
+    mappedArray.push(callback(item, index, array));
+  }
+  return mappedArray
 }
 
 function filter(arr, callback) {
