@@ -45,7 +45,16 @@ function filter(arr, callback) {
 
 function some(arr, callback) {
   // Your code here
+  for (let i = 0 ; i < arr.length ; i++) {
+    let element = arr[i];
+    let index = i;
+    if(callback(element, index, arr)){
+      return true;
+    }
+  }
+  return false;
 }
+
 
 function every(arr, callback) {
   // Your code here
