@@ -58,6 +58,14 @@ function some(arr, callback) {
 
 function every(arr, callback) {
   // Your code here
+  for (let i = 0 ; i < arr.length ; i++) {
+    let element = arr[i];
+    let index = i;
+    if(!callback(element, index, arr)){
+      return false;
+    }
+  }
+  return true;
 }
 
 if (typeof describe === 'function') {
