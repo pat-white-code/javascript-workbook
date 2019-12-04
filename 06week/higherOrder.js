@@ -4,6 +4,11 @@ const assert = require('assert');
 
 function forEach(arr, callback) {
   // Your code here
+  for (let i = 0 ; i < arr.length ; i++) {
+    let element = arr[i];
+    let index = i;
+    callback(element, index, arr)
+  }
 }
 
 function map(arr, callback) {
