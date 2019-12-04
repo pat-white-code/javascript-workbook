@@ -73,6 +73,11 @@ function every(arr, callback) {
   return true;
 }
 
+function reduce(arr, callback) {
+
+
+}
+
 if (typeof describe === 'function') {
 
   describe('#forEach()', () => {
