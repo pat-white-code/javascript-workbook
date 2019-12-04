@@ -96,6 +96,15 @@ if (typeof describe === 'function') {
     });
   });
 
+  describe('#reduce', ()=>{
+    it('should return the sum of the array', ()=>{
+      const reduced = reduce([1, 2, 3], (accumulator, current)=>{
+        return accumulator + current
+      });
+      assert.deepEqual(reduced, 6);
+    })
+  })
+
 } else {
 
   console.log('Only run the tests on this one!')
