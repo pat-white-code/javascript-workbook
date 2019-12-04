@@ -25,6 +25,22 @@ function map(arr, callback) {
 
 function filter(arr, callback) {
   // Your code here
+  //create an empty array
+  //loop through the given array
+  //for each loop, find the given element, index, and array
+  //invoke the callback function and pass in the element, index, and array.
+  //if the result returns true, then push to new array
+  //return the new array
+  let filtered = []
+  for(let i = 0 ; i < arr.length ; i++) {
+    let element = arr[i];
+    let index = i;
+    let array = arr;
+    if(callback(element, index, array)) {
+      filtered.push(element)
+    }
+  }
+  return filtered
 }
 
 function some(arr, callback) {
