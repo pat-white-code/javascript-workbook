@@ -73,9 +73,38 @@ function every(arr, callback) {
   return true;
 }
 
-function reduce(arr, callback) {
+function reduce(arr, callback, currentValue) {
 
+  //The callback will receive two parameters -- an accumulator and a current value.
+  //for now, lets assume that no initial current value is passed in.
+  //so the current value to start out should be equal to arr[0]
+  //the accumulator should be equal to arr[1].
+  //on the second pass, the current value should be equal to arr[0] + arr[1] and accumulator should be equal to arr[2].
+  //Lets create a variable to hold the current value. When we start the loop, the loop will start at 1, and the current value will be equal to arr[0].
 
+  //actually...
+
+  //lets add a currentValue parameter to our function. If currentValue is passed in, loop starts at 0 and current value = currentValue.
+  //otherwise, loop starts at 1 and currentValue = arr[0].
+  
+  // let current = currentValue;
+
+  if(currentValue) {
+    for(let i = 0 ; i < arr.length ; i++) {
+      //currentValue is current argument, arr[i] is "accumulator"
+      console.log('currentValue', currentValue);
+      console.log('arr[i]', arr[i]);
+      currentValue = callback(arr[i], currentValue)
+    }
+  } else {
+    //if current currentValue is not present, assign currentValue to arr[0] (outside loop)
+    currentValue = arr[0];
+    //start loop at i = 1.
+    for(let i = 1 ; i < arr.length ; i++) {
+      currentValue = callback(arr[i], currentValue);
+    }
+  }
+  return currentValue;
 }
 
 if (typeof describe === 'function') {
