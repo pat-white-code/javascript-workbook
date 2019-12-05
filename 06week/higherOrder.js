@@ -4,22 +4,107 @@ const assert = require('assert');
 
 function forEach(arr, callback) {
   // Your code here
+  for (let i = 0 ; i < arr.length ; i++) {
+    let element = arr[i];
+    let index = i;
+    callback(element, index, arr)
+  }
 }
 
 function map(arr, callback) {
   // Your code here
+  //loop through the array
+  //callback should be able to access each item's value, index, and the array
+  //to each item in the array, perform a function
+  //push the result of the function to a new array
+  //return the new array
+  let mappedArray = []
+  for(let i=0 ; i<arr.length ; i++) {
+    let item = arr[i]
+    let index = i
+    let array = arr;
+    mappedArray.push(callback(item, index, array));
+  }
+  return mappedArray
 }
 
 function filter(arr, callback) {
   // Your code here
+  //create an empty array
+  //loop through the given array
+  //for each loop, find the given element, index, and array
+  //invoke the callback function and pass in the element, index, and array.
+  //if the result returns true, then push to new array
+  //return the new array
+  let filtered = []
+  for(let i = 0 ; i < arr.length ; i++) {
+    let element = arr[i];
+    let index = i;
+    let array = arr;
+    if(callback(element, index, array)) {
+      filtered.push(element)
+    }
+  }
+  return filtered
 }
 
 function some(arr, callback) {
   // Your code here
+  for (let i = 0 ; i < arr.length ; i++) {
+    let element = arr[i];
+    let index = i;
+    if(callback(element, index, arr)){
+      return true;
+    }
+  }
+  return false;
 }
+
 
 function every(arr, callback) {
   // Your code here
+  for (let i = 0 ; i < arr.length ; i++) {
+    let element = arr[i];
+    let index = i;
+    if(!callback(element, index, arr)){
+      return false;
+    }
+  }
+  return true;
+}
+
+function reduce(arr, callback, currentValue) {
+
+  //The callback will receive two parameters -- an accumulator and a current value.
+  //for now, lets assume that no initial current value is passed in.
+  //so the current value to start out should be equal to arr[0]
+  //the accumulator should be equal to arr[1].
+  //on the second pass, the current value should be equal to arr[0] + arr[1] and accumulator should be equal to arr[2].
+  //Lets create a variable to hold the current value. When we start the loop, the loop will start at 1, and the current value will be equal to arr[0].
+
+  //actually...
+
+  //lets add a currentValue parameter to our function. If currentValue is passed in, loop starts at 0 and current value = currentValue.
+  //otherwise, loop starts at 1 and currentValue = arr[0].
+  
+  // let current = currentValue;
+
+  if(currentValue) {
+    for(let i = 0 ; i < arr.length ; i++) {
+      //currentValue is current argument, arr[i] is "accumulator"
+      console.log('currentValue', currentValue);
+      console.log('arr[i]', arr[i]);
+      currentValue = callback(arr[i], currentValue)
+    }
+  } else {
+    //if current currentValue is not present, assign currentValue to arr[0] (outside loop)
+    currentValue = arr[0];
+    //start loop at i = 1.
+    for(let i = 1 ; i < arr.length ; i++) {
+      currentValue = callback(arr[i], currentValue);
+    }
+  }
+  return currentValue;
 }
 
 if (typeof describe === 'function') {
@@ -95,6 +180,15 @@ if (typeof describe === 'function') {
       assert.equal(count, 2);
     });
   });
+
+  describe('#reduce', ()=>{
+    it('should return the sum of the array', ()=>{
+      const reduced = reduce([1, 2, 3], (accumulator, current)=>{
+        return accumulator + current
+      });
+      assert.deepEqual(reduced, 6);
+    })
+  })
 
 } else {
 
