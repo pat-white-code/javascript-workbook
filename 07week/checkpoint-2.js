@@ -83,6 +83,7 @@ class RedTeammate {
 
 const listPeopleChoices = () => {
   const listElement = document.getElementById('people')
+  listElement.innerHTML = '';
   arrOfPeople.map(person => {
     const li = document.createElement("li")
     const button = document.createElement("button")
@@ -101,13 +102,16 @@ const getPlayer = (id) => {
   return arrOfPeople[index];
 }
 
-const listPlayer = (player) => {
+const listPlayers = () => {
   const playerList = document.getElementById('players');
-  let li = document.createElement('li');
-  li.innerText = `${player.name}: ${player.skillSet}`
-  playerList.appendChild(li);
-  li.appendChild(teamButton('red', player.id));
-  li.appendChild(teamButton('blue', player.id));
+  playerList.innerHTML = '';
+  listOfPlayers.forEach(player => {
+    let li = document.createElement('li');
+    li.innerText = `${player.name}: ${player.skillSet}`
+    playerList.appendChild(li);
+    li.appendChild(teamButton('red', player.id));
+    li.appendChild(teamButton('blue', player.id));
+  })
 }
 
 const teamButton = (color, id) => {
@@ -129,8 +133,9 @@ const makePlayer = (id) => {
   const newPlayer = new Player(player.id, player.name, player.skillSet, player.placeBorn);
   listOfPlayers.push(newPlayer);
   console.log(listOfPlayers);
-  //arrOfPeople.splice(index, 1);
-  listPlayer(newPlayer);
+  arrOfPeople.splice(index, 1);
+  listPeopleChoices();
+  listPlayers();
 }
 
 const makeTeammate = (color, id) => {
@@ -148,6 +153,8 @@ const makeTeammate = (color, id) => {
   const player = listOfPlayers[index];
   const newTeammate = new Teammate(player.id, player.name, player.age, player.skillSet, player.placeBorn, player.canThrowBall, player.isPaid, player.isHealthy, player.yearsExperience, mascot, teamColor);
   team.push(newTeammate);
+  listOfPlayers.splice(index, 1);
+  listPlayers();
   listTeammate(newTeammate, color);
 }
 
