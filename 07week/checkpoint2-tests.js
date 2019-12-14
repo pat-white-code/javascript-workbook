@@ -1,6 +1,4 @@
-console.log('checkpoint-2.js here...');
-// const assert = require('assert');
-
+const assert = require('assert');
 
 const arrOfPeople = [
   {
@@ -54,9 +52,9 @@ const arrOfPeople = [
   },
 ]
 
-const listOfPlayers = []
-const blueTeam = []
-const redTeam = []
+let listOfPlayers = []
+let blueTeam = []
+let redTeam = []
 
 class Player {
   constructor(id, name, age, skillSet, placeBorn){
@@ -136,8 +134,8 @@ const makePlayer = (id) => {
   listOfPlayers.push(newPlayer);
   console.log(listOfPlayers);
   arrOfPeople.splice(index, 1);
-  listPeopleChoices();
-  listPlayers();
+  // listPeopleChoices();
+  // listPlayers();
 }
 
 const makeTeammate = (color, id) => {
@@ -156,8 +154,8 @@ const makeTeammate = (color, id) => {
   const newTeammate = new Teammate(player.id, player.name, player.age, player.skillSet, player.placeBorn, player.canThrowBall, player.isPaid, player.isHealthy, player.yearsExperience, mascot, teamColor);
   team.push(newTeammate);
   listOfPlayers.splice(index, 1);
-  listPlayers();
-  listTeammate(newTeammate, color);
+  // listPlayers();
+  // listTeammate(newTeammate, color);
 }
 
 const listTeammate = (teammate, color) => {
@@ -166,3 +164,41 @@ const listTeammate = (teammate, color) => {
   li.innerText = `${teammate.name}: ${teammate.skillSet}`
   teamList.appendChild(li);
 }
+
+describe('makePlayer', () => {
+  it('should add a person to the list of players', ()=> {
+    listOfPlayers = [];
+    makePlayer(2);
+    assert.equal(listOfPlayers.length, 1);
+
+    listOfPlayers = [];
+  });
+  it('should add player properties to new players', ()=> {
+    listOfPlayers = [];
+    makePlayer(3);
+    let player = listOfPlayers[0];
+    assert(player.isPaid);
+    assert(player.isHealthy);
+    assert(player.canThrowBall);
+  });
+});
+describe('makePlayer', () => {
+  it('should add players to the correct team', ()=> {
+    makeTeammate('blue', 3);
+    assert.equal(blueTeam.length, 1);
+  });
+  it('should add team properties to new teammates', ()=> {
+    let bluePlayer = blueTeam[0];
+    assert.equal(bluePlayer.teamColor, 'blue');
+  });
+});
+
+
+// describe('makeTeammate', ()=>{
+//   it('should add players to the correct team'), ()=> {
+//     // blueTeam = [];
+//     makeTeammate('blue', 3);
+//     assert(blueTeam);
+//   }
+// }
+// )
