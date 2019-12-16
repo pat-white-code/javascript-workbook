@@ -1,3 +1,7 @@
+//this is a file for testing code in checkpoint-2 
+//references to document are commented out.
+//the code in this file is a copy of checkpoint-2 .js
+
 const assert = require('assert');
 
 const arrOfPeople = [
